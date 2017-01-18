@@ -1,0 +1,154 @@
+html, body{
+	background: #333;
+	height: 100%;
+	margin: 0;
+}
+div{
+	margin: 0;
+	padding: 0;
+}
+// this mixin makes an element placed center both horizonlly and vertically
+.center{
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	margin: auto;
+}
+.fullfill{
+	width: 100%;
+	height: 100%;
+}
+
+// 
+#preloader{
+	position: absolute;
+	left: -99999px;
+}
+#loading{
+	background: rgba(0, 0, 0, .8);
+	position: fixed;
+	z-index: 9999;
+	.fullfill;
+	p{
+		animation: loading 3s ease infinite;
+		color: #fff;
+		font-size: 48px;
+		text-align: center;
+		text-shadow: 0 0 3px;
+		height: 50px;
+		.center;
+	}
+} 
+#game{
+	background: url('bg.png') #0B0B0C;
+	width: 465px;
+	height: 465px;
+	.center;
+	&.active{
+		#stage{
+			display: block;
+		}
+		#gameover{
+			opacity: 0;
+			#board, #restart{
+				opacity: 0;
+			}
+			&::after{
+				animation: none;
+			}
+		}
+	}
+}
+#stage{
+	display: none;
+	position: relative;
+	z-index: 9;
+}
+#gameover{
+	background: rgba(0, 0, 0, .75);
+	transition: opacity .2s ease;
+	opacity: 1;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 2;
+	.fullfill;
+	&::after{ // this is the mysterious white light
+		animation: flash 3s cubic-bezier(0.215, 0.61, 0.355, 1);
+		background: #fff;
+		content: "";
+		opacity: 0;
+		pointer-events: none;
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 3;
+		.fullfill;
+	}
+	#board{
+		background: url('tw.png') left no-repeat;
+		color: #fff;
+		transition: opacity .1s ease 1s;
+		opacity: 1;
+		padding-left: 50px;
+		text-align: center;
+		width: 110px;
+		height: 100px;
+		.center;
+	}
+	p{
+		border-bottom: 1px solid;
+		font-size: 12px;
+		line-height: 1.5;
+		margin: 0;
+	}
+	#score{
+		font-weight: bold;
+		font-size: 24px;
+		line-height: 1.7;
+		margin: 0 0 10px;
+	}
+	#tsubuyaku{
+		background: #44BFE6;
+		border-radius: 6px;
+		color: #fff;
+		font-size: 12px;
+		font-weight: bold;
+		text-decoration: none;
+		padding: 10px 12px;
+		text-shadow: -1px 0 1px rgba(0, 0, 0, .5);
+		&:hover{
+			background: #E68844;
+		}
+	}
+	#restart{
+		color: #FFF;
+		font-weight: bold;
+		text-decoration: none;
+		opacity: 1;
+		padding: 10px;
+		position: absolute;
+		right: 10px;
+		bottom: 5px;
+		transition: transform .1s ease, opacity .1s ease 1s;
+		&:hover{
+			transform: scale(1.2) rotate(-10deg);
+		}
+	}
+}
+
+//
+// animations
+// 
+@keyframes loading{
+	0%{ text-shadow: 0 0 3px;}
+	50%{ text-shadow: 0 0 50px;}
+	100%{ text-shadow: 0 0 3px;}
+}
+@keyframes flash{
+	0% { opacity: 0; }
+	30% { opacity: 1; }
+	100% { opacity: 0; }
+}

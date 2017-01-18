@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=465, user-scalable=no">
+	<title>Flight</title>
+	<link rel="stylesheet" href="assets/x.css">
+</head>
+<body>
+	<!-- the loading hint is for online use -->
+	<div id="loading"><p>Loading asserts, please wait...</p></div>
+	<div id="game">
+		<canvas id="stage"></canvas>
+		<div id="gameover">
+			<div id="board">
+				<p>SCORE</p>
+				<h1 id="score">0</h1>
+			</div>
+			<a href="javascript: start();" id="restart">Play again!</a>
+		</div>
+	</div>
+	<!-- build:js assets/x.min.js -->
+	<script src="js/x.js"></script>
+	<script src="js/config.js"></script>
+	<!-- endbuild -->
+	<!-- pre load images -->
+	<div id="preloader">
+		<img src="assets/bom.png" id="boom">
+		<img src="assets/bullet.png" id="bullet">
+		<img src="assets/earth.png" id="earth">
+		<img src="assets/life.png" id="life">
+		<img src="assets/ufo.png" id="ufo">
+		<img src="assets/warship.png" id="warship">
+	</div>
+</body>
+</html>
